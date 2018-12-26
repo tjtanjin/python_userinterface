@@ -17,6 +17,7 @@ ScreenManagement:
             id: username_label
             text: 'User Name:'
             pos_hint: {'x':-0.10, 'y':0.05}
+            font_size: self.height * 0.025
         TextInput:
             id: username
             multiline: False
@@ -24,11 +25,12 @@ ScreenManagement:
             write_tab: False
             size_hint: (0.15, 0.05)
             pos_hint: {'x':0.47, 'y':0.525}
-            font_size: self.height - 15
+            font_size: root.height * 0.0275
         Label:
             id: password_label
             text: 'Password:'
             pos_hint: {'x':-0.10, 'y':0}
+            font_size: self.height * 0.025
         TextInput:
             id: password
             multiline: False
@@ -37,35 +39,45 @@ ScreenManagement:
             password: True
             size_hint: (0.15, 0.05)
             pos_hint: {'x':0.47, 'y':0.475}
-            font_size: self.height - 15
+            font_size: root.height * 0.0275
+        Label:
+            id: successlogin_message
+            text: "Login successful"
+            color: [0.5,1,0,1]
+            pos_hint: {'x':-0.005, 'y':-0.045}
+            opacity: 0
+            font_size: self.height * 0.025
         Label:
             id: errorlogin_message
             text: "Incorrect username or password."
             color: [1,0,0,1]
-            pos_hint: {'x':0, 'y':-0.045}
+            pos_hint: {'x':-0.005, 'y':-0.045}
             opacity: 0
+            font_size: self.height * 0.025
         Button:
-            id: loginbutton
+            id: login_button
             text: "Login"
             size_hint: (0.15, 0.05)
             pos_hint: {'x':0.42, 'y':0.38}
             background_normal: ""
             background_color: 0.5, 0.5, 0.5, 1
-            on_press: loginbutton.background_color=1, 1, 1, 1
-            on_release: loginbutton.background_color=0.5, 0.5, 0.5, 1
+            on_press: login_button.background_color=1, 1, 1, 1
+            on_release: login_button.background_color=0.5, 0.5, 0.5, 1
             on_release: password.text=""
             on_release: username.text=""
             on_release: root.verify_credentials()
+            font_size: self.height * 0.5
         Button:
-            id: quitbutton
+            id: quit_button
             text: "Quit"
             size_hint: (0.15, 0.05)
             pos_hint: {'x':0.42, 'y':0.32}
             background_normal: ""
             background_color: 0.5, 0.5, 0.5, 1
-            on_press: quitbutton.background_color=1, 1, 1, 1
-            on_release: quitbutton.background_color=0.5, 0.5, 0.5, 1
+            on_press: quit_button.background_color=1, 1, 1, 1
+            on_release: quit_button.background_color=0.5, 0.5, 0.5, 1
             on_release: root.quit()
+            font_size: self.height * 0.5
 <UserPage>:
     FloatLayout:
         size: root.width, root.height
@@ -73,12 +85,43 @@ ScreenManagement:
         padding: 10
         spacing: 10
         Button:
-            id: logoutbutton
-            text: "Logout"
+            id: start_button
+            text: "Start"
             size_hint: (0.15, 0.05)
-            pos_hint: {'x':0.42, 'y':0.32}
+            pos_hint: {'x':0.42, 'y':0.56}
             background_normal: ""
             background_color: 0.5, 0.5, 0.5, 1
-            on_press: logoutbutton.background_color=1, 1, 1, 1
-            on_release: logoutbutton.background_color=0.5, 0.5, 0.5, 1
+            on_press: start_button.background_color=1, 1, 1, 1
+            on_release: start_button.background_color=0.5, 0.5, 0.5, 1
+            font_size: self.height * 0.5
+        Button:
+            id: configure_button
+            text: "Configure"
+            size_hint: (0.15, 0.05)
+            pos_hint: {'x':0.42, 'y':0.50}
+            background_normal: ""
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: configure_button.background_color=1, 1, 1, 1
+            on_release: configure_button.background_color=0.5, 0.5, 0.5, 1
+            font_size: self.height * 0.5
+        Button:
+            id: settings_button
+            text: "Settings"
+            size_hint: (0.15, 0.05)
+            pos_hint: {'x':0.42, 'y':0.44}
+            background_normal: ""
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: settings_button.background_color=1, 1, 1, 1
+            on_release: settings_button.background_color=0.5, 0.5, 0.5, 1
+            font_size: self.height * 0.5
+        Button:
+            id: logout_button
+            text: "Logout"
+            size_hint: (0.15, 0.05)
+            pos_hint: {'x':0.42, 'y':0.38}
+            background_normal: ""
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: logout_button.background_color=1, 1, 1, 1
+            on_release: logout_button.background_color=0.5, 0.5, 0.5, 1
             on_release: root.logout()
+            font_size: self.height * 0.5
