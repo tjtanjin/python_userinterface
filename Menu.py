@@ -10,22 +10,45 @@ from kivy.properties import ObjectProperty
 
 class LoginPage(Screen):
     def verify_credentials(self):
+        """
+        Verify if the correct login credentials have been provided.
+        Args:
+            None
+        """
+        #Note that it is bad practice to hardcode username/password, this is used for rough idea only
         if self.ids["username"].text == "username" and self.ids["password"].text == "password":
+            self.ids["successlogin_message"].opacity = 1
+            Clock.schedule_once(self.hidemessage, 1.5)
             self.manager.current = "user_page"
         else:
             self.ids["errorlogin_message"].opacity = 1
-            Clock.schedule_once(self.displayerror, 2)
+            Clock.schedule_once(self.hidemessage, 1.5)
 
-    def displayerror(self, instance):
-            self.ids["errorlogin_message"].opacity = 0
+    def hidemessage(self, placeholder):
+        """
+        Toggles message on and off.
+        Args:
+            placeholder: -
+        """
+        self.ids["successlogin_message"].opacity = 0
+        self.ids["errorlogin_message"].opacity = 0
     
     def quit(self):
+        """
+        Exits upon clicking the quit button.
+        Args:
+            None
+        """
         sys.exit()
 
 class UserPage(Screen):
     def logout(self):
+        """
+        Logout back to main login page.
+        Args:
+            None
+        """
         self.manager.current = "login_page"
-    pass
 
 class ScreenManagement(ScreenManager):
     pass
