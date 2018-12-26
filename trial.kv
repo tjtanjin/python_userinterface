@@ -1,0 +1,84 @@
+#:kivy 1.10.1
+
+ScreenManagement:
+    LoginPage:
+        id: login_page
+        name: "login_page"
+    UserPage:
+        id: user_page
+        name: "user_page"
+<LoginPage>:
+    FloatLayout:
+        size: root.width, root.height
+        center: root.width / 2, root.height / 2
+        padding: 10
+        spacing: 10
+        Label:
+            id: username_label
+            text: 'User Name:'
+            pos_hint: {'x':-0.10, 'y':0.05}
+        TextInput:
+            id: username
+            multiline: False
+            focus: True
+            write_tab: False
+            size_hint: (0.15, 0.05)
+            pos_hint: {'x':0.47, 'y':0.525}
+            font_size: self.height - 15
+        Label:
+            id: password_label
+            text: 'Password:'
+            pos_hint: {'x':-0.10, 'y':0}
+        TextInput:
+            id: password
+            multiline: False
+            focus: True
+            write_tab: False
+            password: True
+            size_hint: (0.15, 0.05)
+            pos_hint: {'x':0.47, 'y':0.475}
+            font_size: self.height - 15
+        Label:
+            id: errorlogin_message
+            text: "Incorrect username or password."
+            color: [1,0,0,1]
+            pos_hint: {'x':0, 'y':-0.045}
+            opacity: 0
+        Button:
+            id: loginbutton
+            text: "Login"
+            size_hint: (0.15, 0.05)
+            pos_hint: {'x':0.42, 'y':0.38}
+            background_normal: ""
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: loginbutton.background_color=1, 1, 1, 1
+            on_release: loginbutton.background_color=0.5, 0.5, 0.5, 1
+            on_release: password.text=""
+            on_release: username.text=""
+            on_release: root.verify_credentials()
+        Button:
+            id: quitbutton
+            text: "Quit"
+            size_hint: (0.15, 0.05)
+            pos_hint: {'x':0.42, 'y':0.32}
+            background_normal: ""
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: quitbutton.background_color=1, 1, 1, 1
+            on_release: quitbutton.background_color=0.5, 0.5, 0.5, 1
+            on_release: root.quit()
+<UserPage>:
+    FloatLayout:
+        size: root.width, root.height
+        center: root.width / 2, root.height / 2
+        padding: 10
+        spacing: 10
+        Button:
+            id: logoutbutton
+            text: "Logout"
+            size_hint: (0.15, 0.05)
+            pos_hint: {'x':0.42, 'y':0.32}
+            background_normal: ""
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: logoutbutton.background_color=1, 1, 1, 1
+            on_release: logoutbutton.background_color=0.5, 0.5, 0.5, 1
+            on_release: root.logout()
